@@ -142,9 +142,9 @@ const colorMap: Record<string, { bg: string; border: string; text: string; icon:
 };
 
 const plans = [
-  { name: 'Gratuito', price: 'R$ 0', period: '/mês', features: ['Até 20 propostas por mês', '1 usuário', 'Envio por e-mail e PDF', 'Modelos prontos', 'Suporte por e-mail'], cta: 'Comece Grátis', highlight: false },
-  { name: 'Starter', price: 'R$ 99', period: '/mês', features: ['Propostas ilimitadas', '3 usuários', 'E-mail, WhatsApp e PDF', 'Rastreio de leitura e aceite', 'Modelos e cores personalizados', 'Suporte prioritário'], cta: 'Começar Agora', highlight: true },
-  { name: 'Professional', price: 'R$ 249', period: '/mês', features: ['Tudo do Starter', '10 usuários', 'Equipes e aprovação de descontos', 'Follow-up automático', 'Relatórios completos', 'API própria'], cta: 'Começar Agora', highlight: false },
+  { name: 'Gratuito', price: 'R$ 0', period: '/mês', features: ['1 usuário', 'Até 4 propostas', 'Envio por e-mail, WhatsApp e PDF'], cta: 'Comece Grátis', highlight: false },
+  { name: 'Light', price: 'R$ 250', period: '/mês', features: ['Até 5 usuários', 'Propostas ilimitadas', 'Envio por e-mail, WhatsApp e PDF'], cta: 'Começar Agora', highlight: true },
+  { name: 'Pro', price: 'R$ 499', period: '/mês', features: ['Até 60 usuários', 'Propostas ilimitadas', 'Criação de equipes', 'Envio por e-mail, WhatsApp e PDF'], cta: 'Começar Agora', highlight: false },
 ];
 
 export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
@@ -526,6 +526,10 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
               </div>
             ))}
           </div>
+
+          <p className="mt-10 text-center text-sm text-white/50">
+            Mais de 60 usuários? <span className="text-white font-semibold">Fale com a gente sobre um projeto especial</span> para a sua empresa.
+          </p>
         </div>
       </section>
 

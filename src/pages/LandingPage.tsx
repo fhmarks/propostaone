@@ -220,7 +220,7 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
             loop
             playsInline
             className="w-full h-full object-cover opacity-70"
-            src="/PropostaOne_fundo.mp4"
+            src="https://hietkwvenincumawzfls.supabase.co/storage/v1/object/public/propostaone-public/site/PropostaOne_fundo.mp4"
           />
           {/* LINE B — vertical fade: topo e rodapé */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/70 via-transparent to-[#030712]" />
@@ -248,11 +248,11 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
              <p className="text-[clamp(52px,9vw,60px)] font-black text-white tracking-tight leading-[0.9] -mt-1">
               Proposta<span className="text-brand-400">One</span>
             </p>
-            <p className="text-[clamp(52px,9vw,120px)] font-extralight text-white/75 tracking-tight leading-none">
-              Feito para
+            <p className="text-[clamp(34px,6vw,84px)] font-extralight text-white/75 tracking-tight leading-none mb-1">
+              Feito perfeitamente para
             </p>
             <p className="text-[clamp(52px,9vw,120px)] font-black text-white tracking-tight leading-[0.9] -mt-1">
-              EMPRESAS.
+              SUA EMPRESA.
             </p>
           </div>
 

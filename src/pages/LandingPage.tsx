@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
-  Shield, ArrowRight, ChevronDown,
-  Users, Kanban, Calendar, FileText,
-  DollarSign, Zap, MessageSquare, FolderOpen,
-  BarChart3, Store, CheckCircle2,
+  ArrowRight, ChevronDown,
+  Mail, MessageCircle, FileDown, Eye, Tags, LayoutTemplate,
+  Palette, Users, User, Kanban, Zap, Contact, BarChart3,
+  Briefcase, ShoppingBag, FileCheck2, CheckCircle2,
   Building2, TrendingUp, Lock, Globe,
 } from 'lucide-react';
 import RegisterModal from '../components/RegisterModal';
@@ -15,75 +15,119 @@ interface LandingPageProps {
 
 const features = [
   {
-    icon: Users,
-    title: 'CRM Completo',
-    description: 'Gerencie clientes, leads e empresas em um único lugar. Histórico completo, segmentação e acompanhamento de cada contato.',
+    icon: Mail,
+    title: 'Envio por E-mail',
+    description: 'Envie a proposta direto da plataforma, com link exclusivo para o cliente visualizar, baixar e responder sem precisar de anexo.',
     color: 'brand',
-    stats: '360° do cliente',
+    stats: 'Link exclusivo e rastreável',
+  },
+  {
+    icon: MessageCircle,
+    title: 'Envio pelo WhatsApp',
+    description: 'Mande a proposta no WhatsApp do cliente em um clique. Ele abre no celular, lê com calma e aceita na hora.',
+    color: 'emerald',
+    stats: 'Direto no celular do cliente',
+  },
+  {
+    icon: FileDown,
+    title: 'Proposta em PDF',
+    description: 'Gere um PDF profissional com a sua marca para baixar, imprimir, anexar ou levar à reunião. Sempre com o layout impecável.',
+    color: 'rose',
+    stats: 'PDF com a sua marca',
+  },
+  {
+    icon: Eye,
+    title: 'Leitura e Aceite',
+    description: 'Saiba quando o cliente abriu a proposta, quantas vezes voltou nela e quando aceitou ou recusou. Aceite online, sem papel.',
+    color: 'cyan',
+    stats: 'Aberta, lida e aceita',
+  },
+  {
+    icon: Tags,
+    title: 'Organização de Preços',
+    description: 'Catálogo de produtos e serviços com tabelas de preço, descontos, condições de pagamento e validade. Todo mundo vendendo com o preço certo.',
+    color: 'green',
+    stats: 'Preços sempre atualizados',
+  },
+  {
+    icon: LayoutTemplate,
+    title: 'Modelos de Proposta',
+    description: 'Crie modelos diferentes por produto, segmento ou tipo de cliente. Escolha o modelo, ajuste os itens e a proposta fica pronta em minutos.',
+    color: 'amber',
+    stats: 'Proposta pronta em minutos',
+  },
+  {
+    icon: Palette,
+    title: 'Padrões de Cores',
+    description: 'Defina a identidade visual de cada modelo: cores, logotipo, capa e estilo. Uma marca, várias linhas de produto, cada uma com o seu visual.',
+    color: 'purple',
+    stats: 'Sua marca em cada proposta',
+  },
+  {
+    icon: Users,
+    title: 'Trabalho em Equipe',
+    description: 'Vendedores, gestores e permissões por usuário. Acompanhe a produção do time e aprove descontos antes de a proposta sair.',
+    color: 'brand',
+    stats: 'Individual ou em equipe',
   },
   {
     icon: Kanban,
-    title: 'Pipeline de Vendas',
-    description: 'Visualize suas oportunidades em um kanban intuitivo. Mova negócios entre etapas e nunca perca um fechamento.',
+    title: 'Funil de Propostas',
+    description: 'Veja cada proposta na etapa certa: rascunho, enviada, visualizada, em negociação, aceita ou recusada. Nenhuma venda esquecida.',
     color: 'cyan',
-    stats: 'Mais vendas fechadas',
-  },
-  {
-    icon: FileText,
-    title: 'Gestão de Apólices',
-    description: 'Controle todas as apólices, renovações e endossos. Alertas automáticos antes do vencimento.',
-    color: 'emerald',
-    stats: 'Zero apólice perdida',
-  },
-  {
-    icon: Calendar,
-    title: 'Agenda & Tarefas',
-    description: 'Calendário integrado com visitas, chamadas e renovações. Nunca esqueça um compromisso importante.',
-    color: 'amber',
-    stats: 'Agenda organizada',
-  },
-  {
-    icon: DollarSign,
-    title: 'Financeiro & Comissões',
-    description: 'Acompanhe comissões, receitas e despesas. Relatórios financeiros em tempo real para sua corretora.',
-    color: 'green',
-    stats: 'Comissões no controle',
+    stats: 'Todas as etapas à vista',
   },
   {
     icon: Zap,
-    title: 'Automações',
-    description: 'Envie mensagens de aniversário, alertas de renovação e follow-ups automáticos. Trabalhe enquanto o sistema cuida das rotinas.',
-    color: 'purple',
-    stats: 'Automação inteligente',
-  },
-  {
-    icon: MessageSquare,
-    title: 'Comunicação',
-    description: 'Templates prontos para WhatsApp, e-mail e SMS. Histórico de todas as interações com cada cliente.',
-    color: 'rose',
-    stats: 'Multicanal integrado',
-  },
-  {
-    icon: FolderOpen,
-    title: 'Gestão de Documentos',
-    description: 'Armazene apólices, contratos e documentos com organização por cliente. Acesso de qualquer lugar.',
+    title: 'Follow-up Automático',
+    description: 'Lembretes quando o cliente ainda não abriu, quando a proposta está perto de vencer ou quando é hora de voltar a falar com ele.',
     color: 'orange',
-    stats: 'Documentos seguros',
+    stats: 'Ninguém fica sem retorno',
   },
   {
-    icon: Store,
-    title: 'Marketplace de Seguradoras',
-    description: 'Conecte-se diretamente com Porto Seguro, Tokio Marine, Allianz e mais de 12 seguradoras integradas.',
-    color: 'cyan',
-    stats: '+12 seguradoras',
+    icon: Contact,
+    title: 'Clientes PF e PJ',
+    description: 'Cadastro de pessoas físicas e empresas, com preenchimento automático por CNPJ e todo o histórico de propostas de cada cliente.',
+    color: 'emerald',
+    stats: 'Histórico completo',
   },
   {
     icon: BarChart3,
-    title: 'Relatórios & Análises',
-    description: 'Painéis com produção por categoria, ranking de corretores e tendências. Tome decisões baseadas em dados.',
+    title: 'Relatórios de Vendas',
+    description: 'Taxa de conversão, ticket médio, ranking de vendedores, tempo até o aceite e motivos de recusa. Decida com base em dados.',
     color: 'brand',
     stats: 'Decisões com dados',
   },
+];
+
+const audiences = [
+  {
+    icon: Briefcase,
+    title: 'B2B',
+    description: 'Venda para outras empresas com propostas detalhadas, várias aprovações e negociações mais longas.',
+  },
+  {
+    icon: ShoppingBag,
+    title: 'B2C',
+    description: 'Atenda o consumidor final com propostas rápidas, claras e fáceis de aceitar pelo celular.',
+  },
+  {
+    icon: User,
+    title: 'Individual',
+    description: 'Profissional autônomo ou consultor? Tenha a organização de uma grande empresa trabalhando sozinho.',
+  },
+  {
+    icon: Users,
+    title: 'Equipe',
+    description: 'Times de vendas com metas, permissões, aprovação de descontos e visão de cada vendedor.',
+  },
+];
+
+const steps = [
+  { n: '01', title: 'Cadastre preços', description: 'Monte seu catálogo de produtos e serviços com valores, descontos e condições.' },
+  { n: '02', title: 'Escolha o modelo', description: 'Use um modelo pronto, com as cores e a identidade da sua marca.' },
+  { n: '03', title: 'Envie como quiser', description: 'Por e-mail, pelo WhatsApp ou em PDF, direto da plataforma.' },
+  { n: '04', title: 'Acompanhe o aceite', description: 'Saiba quando foi aberta, lida e aceita, e faça o follow-up na hora certa.' },
 ];
 
 const colorMap: Record<string, { bg: string; border: string; text: string; icon: string }> = {
@@ -98,9 +142,9 @@ const colorMap: Record<string, { bg: string; border: string; text: string; icon:
 };
 
 const plans = [
-  { name: 'Gratuito', price: 'R$ 0', period: '/mês', features: ['Até 50 clientes', '10 apólices', '1 usuário', 'Suporte por email'], cta: 'Comece Grátis', highlight: false },
-  { name: 'Starter', price: 'R$ 99', period: '/mês', features: ['Até 500 clientes', '200 apólices', '3 usuários', 'Automações básicas', 'Suporte prioritário'], cta: 'Começar Agora', highlight: true },
-  { name: 'Professional', price: 'R$ 249', period: '/mês', features: ['Clientes ilimitados', 'Apólices ilimitadas', '10 usuários', 'Marketplace completo', 'API própria', 'SLA garantido'], cta: 'Começar Agora', highlight: false },
+  { name: 'Gratuito', price: 'R$ 0', period: '/mês', features: ['Até 20 propostas por mês', '1 usuário', 'Envio por e-mail e PDF', 'Modelos prontos', 'Suporte por e-mail'], cta: 'Comece Grátis', highlight: false },
+  { name: 'Starter', price: 'R$ 99', period: '/mês', features: ['Propostas ilimitadas', '3 usuários', 'E-mail, WhatsApp e PDF', 'Rastreio de leitura e aceite', 'Modelos e cores personalizados', 'Suporte prioritário'], cta: 'Começar Agora', highlight: true },
+  { name: 'Professional', price: 'R$ 249', period: '/mês', features: ['Tudo do Starter', '10 usuários', 'Equipes e aprovação de descontos', 'Follow-up automático', 'Relatórios completos', 'API própria'], cta: 'Começar Agora', highlight: false },
 ];
 
 export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
@@ -145,7 +189,7 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-brand-600/30 border border-brand-500/40 flex items-center justify-center">
-              <Shield className="w-4 h-4 text-brand-400" />
+              <FileCheck2 className="w-4 h-4 text-brand-400" />
             </div>
             <span className="text-lg font-bold tracking-tight">
               Proposta<span className="text-brand-400">One</span>
@@ -223,12 +267,12 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
 
             {/* Left: subtext */}
             <div className="max-w-lg">
-            
+
               <p className="text-xl sm:text-3xl font-semibold text-white leading-snug">
-                Atendemos Corretoras.
+                Propostas que vendem.
               </p>
                 <p className="text-xl sm:text-3xl font-light text-white/55 leading-snug mb-1">
-                Que Atendem Seus Clientes.
+                Do envio ao aceite, em um só lugar.
               </p>
               <div className="flex flex-wrap items-center gap-4 mt-8">
                 <button
@@ -248,10 +292,10 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
             </div>
 
             {/* Right: stats vertical stack */}
-            <div className="flex lg:flex-col gap-6 lg:gap-4 lg:items-end">
+            <div className="flex flex-wrap lg:flex-nowrap lg:flex-col gap-x-6 gap-y-3 lg:gap-4 lg:items-end">
               {[
-                { n: '+12', label: 'seguradoras integradas' },
-                { n: '100%', label: 'foco em corretoras' },
+                { n: '3', label: 'canais: e-mail, WhatsApp e PDF' },
+                { n: 'B2B + B2C', label: 'venda para qualquer negócio' },
                 { n: '24/7', label: 'disponibilidade' },
               ].map(({ n, label }, i) => (
                 <div key={label} className="flex lg:flex-row-reverse items-center gap-3">
@@ -275,22 +319,42 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-950/20 to-transparent pointer-events-none" />
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-4xl sm:text-5xl font-black mb-6 leading-tight">
-            Tudo o que sua corretora precisa,<br />
+            Tudo o que sua empresa precisa para vender,<br />
             <span className="text-brand-400">em um só lugar.</span>
           </h2>
           <p className="text-lg text-white/50 max-w-2xl mx-auto leading-relaxed">
-            Chega de planilhas, sistemas fragmentados e pós-its. A PropostaOne reúne CRM, apólices, financeiro, comunicação e automações numa plataforma criada do zero para o mercado de seguros brasileiro.
+            Chega de proposta no Word, tabela de preço desatualizada e PDF perdido no e-mail. A PropostaOne organiza seus produtos e preços, monta propostas profissionais em minutos, envia por e-mail, WhatsApp ou PDF e mostra quando o cliente abriu, leu e aceitou.
           </p>
           <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[
-              { n: '+12', label: 'Seguradoras integradas' },
-              { n: '100%', label: 'Focada em corretoras' },
-              { n: '0 h', label: 'Para configurar' },
+              { n: '3', label: 'Canais de envio: e-mail, WhatsApp e PDF' },
+              { n: '100%', label: 'Das propostas rastreadas' },
+              { n: 'B2B + B2C', label: 'Para qualquer tipo de venda' },
               { n: '24/7', label: 'Disponibilidade' },
             ].map(({ n, label }) => (
               <div key={label} className="flex flex-col items-center gap-1 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
                 <span className="text-3xl font-black text-brand-400">{n}</span>
                 <span className="text-xs text-white/50 text-center leading-snug">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── COMO FUNCIONA ── */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-14">
+            <p className="text-xs uppercase tracking-widest text-brand-400 font-semibold mb-3">Como funciona</p>
+            <h2 className="text-4xl sm:text-5xl font-black mb-4">Da tabela de preços<br />ao aceite do cliente.</h2>
+            <p className="text-white/50 max-w-xl mx-auto">Quatro passos para trocar o improviso por um processo de vendas organizado.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {steps.map(s => (
+              <div key={s.n} className="relative p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07]">
+                <div className="text-3xl font-black text-brand-400 mb-3 tabular-nums">{s.n}</div>
+                <h3 className="text-base font-bold text-white mb-2">{s.title}</h3>
+                <p className="text-sm text-white/50 leading-relaxed">{s.description}</p>
               </div>
             ))}
           </div>
@@ -303,7 +367,7 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
           <div className="text-center mb-16">
             <p className="text-xs uppercase tracking-widest text-brand-400 font-semibold mb-3">Funcionalidades</p>
             <h2 className="text-4xl sm:text-5xl font-black mb-4">Feito para empresas.<br />Do jeito que precisa ser.</h2>
-            <p className="text-white/50 max-w-xl mx-auto">Cada módulo foi pensado para a realidade do dia a dia de uma corretora de seguro no Brasil.</p>
+            <p className="text-white/50 max-w-xl mx-auto">Da criação ao aceite, cada etapa da proposta foi pensada para quem precisa vender mais, com organização.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -335,7 +399,29 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
         </div>
       </section>
 
-      {/* ── WHY CORRETORAONE ── */}
+      {/* ── PARA QUEM ── */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-14">
+            <p className="text-xs uppercase tracking-widest text-brand-400 font-semibold mb-3">Para quem</p>
+            <h2 className="text-4xl sm:text-5xl font-black mb-4">Venda para<br /><span className="text-brand-400">qualquer tipo de negócio.</span></h2>
+            <p className="text-white/50 max-w-xl mx-auto">Para empresas que vendem para empresas, para o consumidor final, sozinhas ou em equipe.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {audiences.map(({ icon: Icon, title, description }) => (
+              <div key={title} className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-white/[0.14] hover:bg-white/[0.05] transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-brand-500/10 border border-brand-500/20 mb-4">
+                  <Icon className="w-5 h-5 text-brand-400" />
+                </div>
+                <h3 className="text-2xl font-black text-white mb-2">{title}</h3>
+                <p className="text-sm text-white/50 leading-relaxed">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── POR QUE PROPOSTAONE ── */}
       <section className="py-28 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-brand-950/30 via-transparent to-brand-950/30 pointer-events-none" />
         <div className="max-w-6xl mx-auto">
@@ -343,17 +429,17 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
             <div>
               <p className="text-xs uppercase tracking-widest text-brand-400 font-semibold mb-3">Por que a PropostaOne?</p>
               <h2 className="text-4xl sm:text-5xl font-black mb-6 leading-tight">
-                Construída para quem<br />vive de seguros.
+                Construída para quem<br />vive de vender.
               </h2>
               <p className="text-white/50 text-lg leading-relaxed mb-8">
-                Sistemas genéricos de CRM não entenderam o mercado de seguros. Aqui, cada campo, cada fluxo, cada relatório foi desenhado pensando em você, corretor.
+                Proposta não é só um documento: é o momento da decisão. A PropostaOne dá à sua empresa o controle de cada etapa, do preço certo ao aceite do cliente, sem depender de Word, planilha ou PDF solto.
               </p>
               <div className="space-y-4">
                 {[
-                  { icon: Building2, text: 'Multi-corretora com isolamento total de dados' },
-                  { icon: Lock,      text: 'Dados seguros com criptografia e backup automático' },
-                  { icon: Globe,     text: 'Acesso de qualquer dispositivo, em qualquer lugar' },
-                  { icon: TrendingUp, text: 'Escala com sua corretora — do free ao enterprise' },
+                  { icon: Building2,  text: 'Para pessoa física e jurídica, no B2B e no B2C' },
+                  { icon: Lock,       text: 'Dados seguros com criptografia e backup automático' },
+                  { icon: Globe,      text: 'Acesso de qualquer dispositivo, em qualquer lugar' },
+                  { icon: TrendingUp, text: 'Cresce com você: do vendedor individual ao time completo' },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center flex-shrink-0">
@@ -369,10 +455,10 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
               <div className="absolute -inset-4 bg-brand-600/5 rounded-3xl blur-2xl" />
               <div className="relative grid grid-cols-2 gap-4">
                 {[
-                  { label: 'Renovações em dia', value: '98%', color: 'emerald' },
-                  { label: 'Comissões rastreadas', value: '100%', color: 'brand' },
-                  { label: 'Tempo médio setup', value: '< 1h', color: 'amber' },
-                  { label: 'Suporte em português', value: 'Sempre', color: 'cyan' },
+                  { label: 'Envio por e-mail, WhatsApp e PDF', value: '3 canais', color: 'emerald' },
+                  { label: 'Saiba quando foi aberta, lida e aceita', value: 'Tempo real', color: 'brand' },
+                  { label: 'Para o cliente aceitar a proposta', value: '1 clique', color: 'amber' },
+                  { label: 'Modelos e cores da sua marca', value: 'Sua cara', color: 'cyan' },
                 ].map(({ label, value, color }) => {
                   const c = colorMap[color] ?? colorMap['brand'];
                   return (
@@ -394,7 +480,7 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
           <div className="text-center mb-14">
             <p className="text-xs uppercase tracking-widest text-brand-400 font-semibold mb-3">Planos</p>
             <h2 className="text-4xl sm:text-5xl font-black mb-4">Simples assim.</h2>
-            <p className="text-white/50">Comece grátis e escale conforme sua corretora cresce.</p>
+            <p className="text-white/50">Comece grátis e escale conforme suas vendas crescem.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 items-stretch">
@@ -449,11 +535,11 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-brand-600/8 rounded-full blur-[100px] pointer-events-none" />
         <div className="relative max-w-3xl mx-auto text-center">
           <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight">
-            Sua corretora merece<br />
-            <span className="text-brand-400">o melhor.</span>
+            Sua próxima venda<br />
+            <span className="text-brand-400">começa aqui.</span>
           </h2>
           <p className="text-xl text-white/50 mb-10">
-            Junte-se às corretoras que escolheram ser <strong className="text-white font-bold">One</strong>.
+            Junte-se às empresas que escolheram ser <strong className="text-white font-bold">One</strong>.
           </p>
           <button
             onClick={onRegister}
@@ -471,12 +557,12 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-lg bg-brand-600/30 border border-brand-500/40 flex items-center justify-center">
-              <Shield className="w-3 h-3 text-brand-400" />
+              <FileCheck2 className="w-3 h-3 text-brand-400" />
             </div>
             <span className="text-sm font-bold">Proposta<span className="text-brand-400">One</span></span>
           </div>
           <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} PropostaOne. Plataforma exclusiva para corretoras de seguro.
+            © {new Date().getFullYear()} PropostaOne. Propostas comerciais para empresas que vendem.
           </p>
           <button
             onClick={onLogin}

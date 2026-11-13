@@ -148,7 +148,7 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
               <Shield className="w-4 h-4 text-brand-400" />
             </div>
             <span className="text-lg font-bold tracking-tight">
-              Corretora<span className="text-brand-400">One</span>
+              Proposta<span className="text-brand-400">One</span>
             </span>
           </div>
           <button
@@ -202,13 +202,13 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
           {/* Headline — contraste peso fino × ultra-bold */}
           <div className="mb-7 leading-none">
              <p className="text-[clamp(52px,9vw,60px)] font-black text-white tracking-tight leading-[0.9] -mt-1">
-              Corretora<span className="text-brand-400">One</span>
+              Proposta<span className="text-brand-400">One</span>
             </p>
             <p className="text-[clamp(52px,9vw,120px)] font-extralight text-white/75 tracking-tight leading-none">
               Feito para
             </p>
             <p className="text-[clamp(52px,9vw,120px)] font-black text-white tracking-tight leading-[0.9] -mt-1">
-              CORRETORAS.
+              EMPRESAS.
             </p>
           </div>
 
@@ -279,7 +279,7 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
             <span className="text-brand-400">em um só lugar.</span>
           </h2>
           <p className="text-lg text-white/50 max-w-2xl mx-auto leading-relaxed">
-            Chega de planilhas, sistemas fragmentados e pós-its. A CorretoraOne reúne CRM, apólices, financeiro, comunicação e automações numa plataforma criada do zero para o mercado de seguros brasileiro.
+            Chega de planilhas, sistemas fragmentados e pós-its. A PropostaOne reúne CRM, apólices, financeiro, comunicação e automações numa plataforma criada do zero para o mercado de seguros brasileiro.
           </p>
           <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[
@@ -302,7 +302,7 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs uppercase tracking-widest text-brand-400 font-semibold mb-3">Funcionalidades</p>
-            <h2 className="text-4xl sm:text-5xl font-black mb-4">Feito para corretoras.<br />Do jeito que precisa ser.</h2>
+            <h2 className="text-4xl sm:text-5xl font-black mb-4">Feito para empresas.<br />Do jeito que precisa ser.</h2>
             <p className="text-white/50 max-w-xl mx-auto">Cada módulo foi pensado para a realidade do dia a dia de uma corretora de seguro no Brasil.</p>
           </div>
 
@@ -341,7 +341,7 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-xs uppercase tracking-widest text-brand-400 font-semibold mb-3">Por que a CorretoraOne?</p>
+              <p className="text-xs uppercase tracking-widest text-brand-400 font-semibold mb-3">Por que a PropostaOne?</p>
               <h2 className="text-4xl sm:text-5xl font-black mb-6 leading-tight">
                 Construída para quem<br />vive de seguros.
               </h2>
@@ -473,10 +473,10 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
             <div className="w-6 h-6 rounded-lg bg-brand-600/30 border border-brand-500/40 flex items-center justify-center">
               <Shield className="w-3 h-3 text-brand-400" />
             </div>
-            <span className="text-sm font-bold">Corretora<span className="text-brand-400">One</span></span>
+            <span className="text-sm font-bold">Proposta<span className="text-brand-400">One</span></span>
           </div>
           <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} CorretoraOne. Plataforma exclusiva para corretoras de seguro.
+            © {new Date().getFullYear()} PropostaOne. Plataforma exclusiva para corretoras de seguro.
           </p>
           <button
             onClick={onLogin}

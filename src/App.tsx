@@ -38,7 +38,7 @@ function AppContent() {
           <div className="w-16 h-16 rounded-2xl bg-brand-600/20 border border-brand-500/25 flex items-center justify-center animate-pulse-soft">
             <Shield className="w-8 h-8 text-brand-400" />
           </div>
-          <div className="text-white/50 text-sm">Carregando CorretoraOne...</div>
+          <div className="text-white/50 text-sm">Carregando PropostaOne...</div>
         </div>
       </div>
     );

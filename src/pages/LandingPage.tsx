@@ -220,7 +220,7 @@ export default function LandingPage({ onLogin, onRegister }: LandingPageProps) {
             loop
             playsInline
             className="w-full h-full object-cover opacity-70"
-            src="/CorretoraOne_fundo.mp4"
+            src="/PropostaOne_fundo.mp4"
           />
           {/* LINE B — vertical fade: topo e rodapé */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/70 via-transparent to-[#030712]" />

@@ -104,7 +104,7 @@ LANGUAGE sql
 SECURITY DEFINER
 STABLE
 SET search_path = public
-AS $
+AS $$
   SELECT tenant_id FROM propostaone_profiles WHERE id = auth.uid()
 $$;
 
@@ -1323,7 +1323,7 @@ LANGUAGE sql
 STABLE
 SECURITY DEFINER
 SET search_path = public
-AS $
+AS $$
   SELECT COALESCE(
     (SELECT is_super_admin FROM propostaone_profiles WHERE id = auth.uid() LIMIT 1),
     false
@@ -1462,7 +1462,7 @@ CREATE OR REPLACE FUNCTION propostaone_get_auth_user_tenant_id()
 RETURNS uuid
 LANGUAGE sql SECURITY DEFINER STABLE
 SET search_path = public
-AS $
+AS $$
   SELECT tenant_id FROM propostaone_profiles WHERE id = auth.uid()
 $$;
 

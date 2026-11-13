@@ -33,18 +33,19 @@ cp .env.example .env   # preencha VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY
 npm run dev
 ```
 
-## Deploy — Cloudflare Pages
+## Deploy — Cloudflare Workers (static assets)
 
-| Configuração        | Valor            |
-|---------------------|------------------|
-| Framework preset    | Vite (ou None)   |
-| Build command       | `npm run build`  |
-| Output directory    | `dist`           |
-| Node version        | 20 (`.nvmrc`)    |
+Site: https://propostaone.fhmarks.workers.dev — conectado a este repositório:
+**todo push na `main` publica automaticamente** (Workers Builds).
 
-Variáveis de ambiente (Settings → Environment variables), em Production e Preview:
+| Configuração           | Valor                 |
+|------------------------|-----------------------|
+| Build command          | `npm run build`       |
+| Deploy command         | `npx wrangler deploy` |
+| Node                   | 22 (`.node-version`)  |
 
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_ANON_KEY`
-
-O arquivo `public/_redirects` faz o fallback de SPA (`/* → /index.html`).
+- `wrangler.json` serve o `dist/` com fallback de SPA (`not_found_handling`).
+- Supabase: `.env.production` (versionado) tem a URL e a chave **anon** do projeto
+  `hietkwvenincumawzfls` (o mesmo do Garantia de Receita). A chave anon é pública;
+  quem protege os dados é o RLS. A `service_role` nunca entra no repositório.
+- Testar sem publicar: `npx wrangler deploy --dry-run` (precisa de Node 22).

@@ -1,90 +1,50 @@
-# React + Vite + Hono + Cloudflare Workers
+# PropostaOne
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/vite-react-template)
+Site e plataforma do PropostaOne. Base vinda do projeto CorretoraOne (Bolt), em adaptação.
 
-This template provides a minimal setup for building a React application with TypeScript and Vite, designed to run on Cloudflare Workers. It features hot module replacement, ESLint integration, and the flexibility of Workers deployments.
+## Stack
 
-![React + TypeScript + Vite + Cloudflare Workers](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/fc7b4b62-442b-4769-641b-ad4422d74300/public)
+- React 18 + TypeScript + Vite + Tailwind (ícones: lucide-react)
+- Supabase (banco **compartilhado com o Garantia de Receita**)
+- Hospedagem: Cloudflare Pages
 
-<!-- dash-content-start -->
+## Banco de dados
 
-🚀 Supercharge your web development with this powerful stack:
+O banco é o mesmo do Garantia de Receita, então **tudo do PropostaOne usa o prefixo `propostaone_`**:
 
-- [**React**](https://react.dev/) - A modern UI library for building interactive interfaces
-- [**Vite**](https://vite.dev/) - Lightning-fast build tooling and development server
-- [**Hono**](https://hono.dev/) - Ultralight, modern backend framework
-- [**Cloudflare Workers**](https://developers.cloudflare.com/workers/) - Edge computing platform for global deployment
+- tabelas: `propostaone_tenants`, `propostaone_profiles`, `propostaone_clients`…
+- funções: `propostaone_get_tenant_id()`, `propostaone_is_super_admin()`…
+- índices: `idx_propostaone_…`
+- storage: bucket `propostaone-documents` (privado, pasta por tenant)
+- edge functions: `propostaone-register`, `propostaone-provisional-register`, `propostaone-cnpj-lookup`
 
-### ✨ Key Features
+Schema completo: `supabase/migrations/20261113000000_propostaone_init.sql`.
 
-- 🔥 Hot Module Replacement (HMR) for rapid development
-- 📦 TypeScript support out of the box
-- 🛠️ ESLint configuration included
-- ⚡ Zero-config deployment to Cloudflare's global network
-- 🎯 API routes with Hono's elegant routing
-- 🔄 Full-stack development setup
-- 🔎 Built-in Observability to monitor your Worker
+Ao criar tabela nova, use sempre o prefixo, e no front use `supabase.from('propostaone_…')`.
 
-Get started in minutes with local development or deploy directly via the Cloudflare dashboard. Perfect for building modern, performant web applications at the edge.
+> O login (auth.users) também é compartilhado: um usuário do Garantia de Receita
+> consegue autenticar, mas só entra na plataforma se tiver registro em `propostaone_profiles`.
 
-<!-- dash-content-end -->
-
-## Getting Started
-
-To start a new project with this template, run:
-
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/vite-react-template
-```
-
-A live deployment of this template is available at:
-[https://react-vite-template.templates.workers.dev](https://react-vite-template.templates.workers.dev)
-
-## Development
-
-Install dependencies:
+## Rodar local
 
 ```bash
 npm install
-```
-
-Start the development server with:
-
-```bash
+cp .env.example .env   # preencha VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY
 npm run dev
 ```
 
-Your application will be available at [http://localhost:5173](http://localhost:5173).
+## Deploy — Cloudflare Pages
 
-## Production
+| Configuração        | Valor            |
+|---------------------|------------------|
+| Framework preset    | Vite (ou None)   |
+| Build command       | `npm run build`  |
+| Output directory    | `dist`           |
+| Node version        | 20 (`.nvmrc`)    |
 
-Build your project for production:
+Variáveis de ambiente (Settings → Environment variables), em Production e Preview:
 
-```bash
-npm run build
-```
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
 
-Preview your build locally:
-
-```bash
-npm run preview
-```
-
-Deploy your project to Cloudflare Workers:
-
-```bash
-npm run build && npm run deploy
-```
-
-Monitor your workers:
-
-```bash
-npx wrangler tail
-```
-
-## Additional Resources
-
-- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
-- [Vite Documentation](https://vitejs.dev/guide/)
-- [React Documentation](https://reactjs.org/)
-- [Hono Documentation](https://hono.dev/)
+O arquivo `public/_redirects` faz o fallback de SPA (`/* → /index.html`).

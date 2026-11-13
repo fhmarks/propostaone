@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-900 text-white antialiased;
+    background-image: linear-gradient(135deg, #030712 0%, #0a0f1e 40%, #0d1a2e 70%, #0a1628 100%);
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  ::selection {
+    background: rgba(59, 130, 246, 0.35);
+    color: white;
+  }
+}
+
+@layer components {
+  /* Glass card base */
+  .glass-card {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl shadow-glass;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:bg-white/[0.06] hover:border-white/[0.12] hover:shadow-glass-glow cursor-pointer;
+  }
+
+  .glass-panel {
+    @apply bg-white/[0.02] backdrop-blur-2xl border border-white/[0.06] rounded-3xl shadow-glass-lg;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm
+           bg-brand-600 hover:bg-brand-500 text-white
+           transition-all duration-200 active:scale-95
+           shadow-[0_4px_14px_rgba(37,99,235,0.3)];
+  }
+
+  .btn-glass {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm
+           bg-white/[0.06] hover:bg-white/[0.10] text-white/80 hover:text-white
+           border border-white/[0.08] hover:border-white/[0.15]
+           transition-all duration-200 active:scale-95 backdrop-blur-sm;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm
+           text-white/60 hover:text-white hover:bg-white/[0.06]
+           transition-all duration-200 active:scale-95;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm
+           bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300
+           border border-red-500/20 hover:border-red-500/40
+           transition-all duration-200 active:scale-95;
+  }
+
+  /* Inputs */
+  .input-glass {
+    @apply w-full px-4 py-2.5 rounded-xl text-sm text-white placeholder-white/30
+           bg-white/[0.05] border border-white/[0.08] focus:border-brand-500/50
+           focus:outline-none focus:ring-2 focus:ring-brand-500/20
+           backdrop-blur-sm transition-all duration-200;
+  }
+
+  .input-glass:focus {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-blue   { @apply badge bg-brand-500/20 text-brand-300 border border-brand-500/20; }
+  .badge-green  { @apply badge bg-emerald-500/20 text-emerald-300 border border-emerald-500/20; }
+  .badge-amber  { @apply badge bg-amber-500/20 text-amber-300 border border-amber-500/20; }
+  .badge-red    { @apply badge bg-red-500/20 text-red-300 border border-red-500/20; }
+  .badge-purple { @apply badge bg-violet-500/20 text-violet-300 border border-violet-500/20; }
+  .badge-gray   { @apply badge bg-white/10 text-white/60 border border-white/10; }
+  .badge-cyan   { @apply badge bg-cyan-500/20 text-cyan-300 border border-cyan-500/20; }
+
+  /* Table */
+  .table-glass {
+    @apply w-full text-sm;
+  }
+
+  .table-glass thead th {
+    @apply px-4 py-3 text-left text-xs font-semibold text-white/40 uppercase tracking-wider;
+  }
+
+  .table-glass tbody tr {
+    @apply border-t border-white/[0.05] hover:bg-white/[0.03] transition-colors duration-150;
+  }
+
+  .table-glass tbody td {
+    @apply px-4 py-3.5 text-white/80;
+  }
+
+  /* Page wrapper */
+  .page-wrapper {
+    @apply p-6 space-y-6 animate-fade-in;
+  }
+
+  .page-header {
+    @apply flex items-center justify-between;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold text-white;
+  }
+
+  .page-subtitle {
+    @apply text-sm text-white/50 mt-0.5;
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply glass-card p-5 flex flex-col gap-3;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-white/[0.06];
+  }
+
+  /* Sidebar active item */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+           text-white/50 hover:text-white hover:bg-white/[0.06]
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .nav-item-active {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+           text-white bg-brand-600/30 border border-brand-500/25
+           shadow-[0_0_16px_rgba(59,130,246,0.1)];
+  }
+
+  /* Kanban card */
+  .kanban-card {
+    @apply glass-card p-4 cursor-grab active:cursor-grabbing
+           hover:border-white/[0.15] hover:shadow-glass-glow
+           transition-all duration-200;
+  }
+
+  /* Modal overlay */
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4
+           bg-black/60 backdrop-blur-sm animate-fade-in;
+  }
+
+  .modal-content {
+    @apply glass-panel p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto animate-slide-up;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-warm {
+    @apply bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .glow-green {
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.3);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
